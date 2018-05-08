@@ -13,7 +13,8 @@ import urllib
 
 SEP = os.linesep
 
-def fobj_to_pystring(fobj):
+def f(fobj):
+    fobj=open(fobj)
     result_lines = [
         'import requests',
     ]
@@ -35,6 +36,8 @@ def fobj_to_pystring(fobj):
         call_code_format = (
             'response = requests.{method}({args}{sep})'
         )
+        if any(url.endswith(i) for i in 'js,gif,png,jpg,css,client'.split(',')):continue
+        print(url)
         arg_lines = [
             '{sep}    {url},'.format(
                 sep = SEP,
